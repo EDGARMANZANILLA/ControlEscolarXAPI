@@ -1,5 +1,84 @@
 [
   {
+    "ContainingType": "ControlEscolarXWebAPI.Controllers.TiposPersonalController",
+    "Method": "ObtenerListaTipoPersonal",
+    "RelativePath": "api/TiposPersonal",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlEscolarXWebAPI.Controllers.TiposPersonalController",
+    "Method": "CrearTipoPersonal",
+    "RelativePath": "api/TiposPersonal",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tipoPersonal",
+        "Type": "Application.DTO.CreateTipoPersonalDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlEscolarXWebAPI.Controllers.TiposPersonalController",
+    "Method": "ActualizarTipoPersonal",
+    "RelativePath": "api/TiposPersonal/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "tipoPersonal",
+        "Type": "Application.DTO.TipoPersonalDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlEscolarXWebAPI.Controllers.TiposPersonalController",
+    "Method": "EliminarTipoPersonal",
+    "RelativePath": "api/TiposPersonal/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlEscolarXWebAPI.Controllers.UsuarioController",
+    "Method": "InicioSesion",
+    "RelativePath": "api/Usuario/Iniciosesion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usuarioLogin",
+        "Type": "Application.DTO.UsuarioAutenticadoDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ControlEscolarXWebAPI.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "api/WeatherForecast",
@@ -33,16 +112,6 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "ControlEscolarXWebAPI.Controllers.WeatherForecastController",
-    "Method": "Updatel",
-    "RelativePath": "api/WeatherForecast/Update",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
     "ReturnTypes": []
   }
 ]

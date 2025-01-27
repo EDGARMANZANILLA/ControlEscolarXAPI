@@ -12,6 +12,8 @@ bld/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+.vs/
+obj/
 
 # StyleCop
 StyleCopReport.xml

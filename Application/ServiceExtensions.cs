@@ -20,7 +20,10 @@ namespace Application
             //Carga un perfil de mapeos de entidades en DTOs
             services.AddAutoMapper(typeof(MappingProfile));
 
-            services.AddTransient<TipoPersonalUse>();
+            //Registra cada Interfaz con el tipo de caso de uso
+            services.AddTransient<ITipoPersonalUseCase,TipoPersonalUseCase>();
+            services.AddTransient<IUsuarioUseCase,UsuarioUseCase>();
+
         }
 
     }

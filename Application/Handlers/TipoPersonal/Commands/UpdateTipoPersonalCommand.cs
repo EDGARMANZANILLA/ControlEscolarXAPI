@@ -51,20 +51,26 @@ namespace Application.Handlers.TipoPersonal.Commands
             {
                 //obtiene la entidad para actualizar 
                 CatTipoPersonalTabuladorSueldo updateItemTipoPersonal = await _repositorio.ObtenerPorFiltroInclude(x => x.IdTblTipoPersonal == request.IdTipoPersonal, include => include.IdTblTipoPersonalNavigation).FirstOrDefaultAsync(cancellationToken);
-                CatTipoPersonalTabuladorSueldo updateItemTipoPersonal2 = await _repositorio.ObtenerPorFiltro(x => x.IdTblTipoPersonal == request.IdTipoPersonal).FirstOrDefaultAsync(cancellationToken);
-
-                updateItemTipoPersonal.IdTblTipoPersonalNavigation.TipoPersonal = request.TipoPersonal;
-                updateItemTipoPersonal.IdTblTipoPersonalNavigation.NumeroControl = request.NumeroControl;
-                //updateItemTipoPersonal.TipoPersonal = request.TipoPersonal;
-                //updateItemTipoPersonal.NumeroControl = request.NumeroControl;
-                updateItemTipoPersonal.SueldoMin = request.SueldoMin;
-                updateItemTipoPersonal.SueldoMax = request.SueldoMax;
-
-                CatTipoPersonalTabuladorSueldo tipoPersonalUpdated = await _repositorio.Actualizar(updateItemTipoPersonal);
-
-                if (tipoPersonalUpdated != null)
+            
+                if (updateItemTipoPersonal != null)
                 {
-                    updatedItem = _mapper.Map<TipoPersonalDTO>(tipoPersonalUpdated);
+                    updateItemTipoPersonal.IdTblTipoPersonalNavigation.TipoPersonal = request.TipoPersonal;
+                    updateItemTipoPersonal.IdTblTipoPersonalNavigation.NumeroControl = request.NumeroControl;
+                    //updateItemTipoPersonal.TipoPersonal = request.TipoPersonal;
+                    //updateItemTipoPersonal.NumeroControl = request.NumeroControl;
+                    updateItemTipoPersonal.SueldoMin = request.SueldoMin;
+                    updateItemTipoPersonal.SueldoMax = request.SueldoMax;
+
+                    CatTipoPersonalTabuladorSueldo tipoPersonalUpdated = await _repositorio.Actualizar(updateItemTipoPersonal);
+
+                    if (tipoPersonalUpdated != null)
+                    {
+                        updatedItem = _mapper.Map<TipoPersonalDTO>(request);
+                    }
+                }
+                else 
+                {
+                    exceptionMessage = $"La entidad que esta tratando de actualizar no existe intente con otra";
                 }
 
             }
@@ -74,14 +80,12 @@ namespace Application.Handlers.TipoPersonal.Commands
             }
 
 
-            bool isException = string.IsNullOrEmpty(exceptionMessage);
+            bool isException = !string.IsNullOrEmpty(exceptionMessage);
             return new APIReply<TipoPersonalDTO>
             {
                 result = updatedItem,
-                message = !isException ? "Recurso actualizado exitosamente " : string.Empty,
-                isException = !isException,
-                exceptionMessage = exceptionMessage,
-                statusCode = !isException ? System.Net.HttpStatusCode.OK : System.Net.HttpStatusCode.InternalServerError
+                message = isException ? exceptionMessage : "Recurso actualizado exitosamente ",
+                statusCode = isException ?  System.Net.HttpStatusCode.InternalServerError : System.Net.HttpStatusCode.OK
             };
 
         }

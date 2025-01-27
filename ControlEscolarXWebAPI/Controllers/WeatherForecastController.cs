@@ -44,18 +44,5 @@ namespace ControlEscolarXWebAPI.Controllers
         }
 
 
-        [HttpGet("Update")]
-        public async Task<IActionResult> Updatel()
-        {
-            TipoPersonalDTO tipoPersonal = new TipoPersonalDTO();
-            tipoPersonal.IdTipoPersonal = 1;
-            tipoPersonal.TipoPersonal = "Director";
-            tipoPersonal.NumeroControl = "D-";
-            tipoPersonal.SueldoMin = new decimal(65000.00);
-            tipoPersonal.SueldoMax = new decimal(105000.00);
-            return Ok(await _tipoPersonalUse.UpdateTipoPersonalHandler(tipoPersonal));
-        }
-
-
     }
 }

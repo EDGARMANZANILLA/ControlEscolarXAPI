@@ -23,7 +23,7 @@ namespace Application.Interfaces
         /// Actualiza un registro de tipo personal 
         /// </summary>
         /// <returns>Retorna una lista de objetos de tipo TipoPersonalDTO</returns>
-        Task<APIReply<TipoPersonalDTO>> UpdateTipoPersonalHandler(TipoPersonalDTO tipoPersonal);
+        Task<APIReply<TipoPersonalDTO>> UpdateTipoPersonalHandler(int idTipoPersonal, TipoPersonalDTO tipoPersonal);
 
         /// <summary>
         /// Crea un recurso de tipo personal 
@@ -35,7 +35,7 @@ namespace Application.Interfaces
         /// Eliminacion en cascada de un tipo de personal 
         /// </summary>
         /// /// <returns>Retorna un valor boleano segun sea exitoso o no el registro</returns>
-        Task<APIReply<bool>> DeleteTipoPersonalHandler(CreateTipoPersonalDTO tipoPersonal);
+        Task<APIReply<DeleteTipoPersonalDTO>> DeleteTipoPersonalHandler(int tipoPersonal);
 
     }
 }

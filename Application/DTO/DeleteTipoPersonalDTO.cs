@@ -8,7 +8,8 @@ namespace Application.DTO
 {
     public class DeleteTipoPersonalDTO
     {
-        public int NumeroTiposPersonalEliminados { get; set; }
-        public int NumeroPersonalEliminados { get; set; }
+        public int NumeroTiposPersonalEliminados { get; set; } = 0;
+        public int NumeroPersonalEliminados { get; set; } = 0;
+
     }
 }

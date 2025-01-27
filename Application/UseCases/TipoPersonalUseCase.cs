@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace Application.UseCases
 {
-    public class TipoPersonalUse : ITipoPersonalUseCase
+    public class TipoPersonalUseCase : ITipoPersonalUseCase
     {
 
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
 
-        public TipoPersonalUse(IMediator mediator, IMapper mapper)
+        public TipoPersonalUseCase(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
             _mapper = mapper;
@@ -39,10 +39,10 @@ namespace Application.UseCases
         /// </summary>
         /// <param name="tipoPersonal">Objeto a actualizar </param>
         /// <returns>Recresa el objeto actualizado </returns>
-        public async Task<APIReply<TipoPersonalDTO>> UpdateTipoPersonalHandler(TipoPersonalDTO tipoPersonal)
+        public async Task<APIReply<TipoPersonalDTO>> UpdateTipoPersonalHandler(int idTipoPersonal, TipoPersonalDTO tipoPersonal)
         {
             UpdateTipoPersonalCommand updateTipoPersonal = _mapper.Map<UpdateTipoPersonalCommand>(tipoPersonal);
-            
+            updateTipoPersonal.IdTipoPersonal = idTipoPersonal;
             return await _mediator.Send(updateTipoPersonal);
         }
 
@@ -58,11 +58,9 @@ namespace Application.UseCases
             return await _mediator.Send(createTipoPersonal);
         }
 
-        public async Task<APIReply<bool>> DeleteTipoPersonalHandler(CreateTipoPersonalDTO tipoPersonal)
+        public async Task<APIReply<DeleteTipoPersonalDTO>> DeleteTipoPersonalHandler(int idTipoPersonal)
         {
-            CreateTipoPersonalCommand createTipoPersonal = _mapper.Map<CreateTipoPersonalCommand>(tipoPersonal);
-
-            return await _mediator.Send(createTipoPersonal);
+            return await _mediator.Send(new DeleteTipoPersonalCommand{ IdTblTipoPersonal = idTipoPersonal});
         }
 
     }

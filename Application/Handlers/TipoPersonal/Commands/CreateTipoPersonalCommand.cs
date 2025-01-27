@@ -48,69 +48,70 @@ namespace Application.Handlers.TipoPersonal.Commands
             string exceptionMessage = string.Empty;
             try
             {
-                //crea la entidad para insertarla 
-                TblTipoPersonal itemTipoPersonal = new TblTipoPersonal();
-                itemTipoPersonal.TipoPersonal = request.TipoPersonal;
-                itemTipoPersonal.NumeroControl = request.NumeroControl;
-                itemTipoPersonal.RecibeSueldo = request.RecibeSueldo;
-                itemTipoPersonal.Activo = true;
+                TblTipoPersonal tipoPersonal = _repositorioTipoPersonal.ObtenerPorFiltro(x => x.TipoPersonal == request.TipoPersonal && x.NumeroControl == request.NumeroControl && x.Activo == true).FirstOrDefault();
+                if (tipoPersonal != null)
+                {
+                    exceptionMessage = $"El tipo personal '{tipoPersonal.TipoPersonal}' ya se encuenta registrado con el numero de control {tipoPersonal.NumeroControl} y activo, intente con otro tipo";
+                }
+                else 
+                {
+                    //crea la entidad para insertarla 
+                    TblTipoPersonal itemTipoPersonal = new TblTipoPersonal();
+                    itemTipoPersonal.TipoPersonal = request.TipoPersonal;
+                    itemTipoPersonal.NumeroControl = request.NumeroControl;
+                    itemTipoPersonal.RecibeSueldo = request.RecibeSueldo;
+                    itemTipoPersonal.Activo = true;
 
-                //Inserta un registro de tipo personal sin el sueldo
-                await _repositorioTipoPersonal.Agregar(itemTipoPersonal);
+                    //Inserta un registro de tipo personal sin el sueldo
+                    await _repositorioTipoPersonal.Agregar(itemTipoPersonal);
                 
                 
-                //Si el regitro tipo personal tiene sueldo se registra el sueldo
-                CatTipoPersonalTabuladorSueldo itemTipoPersonalSueldo = null;
-                if (request.RecibeSueldo) 
-                {
-                    itemTipoPersonalSueldo = new CatTipoPersonalTabuladorSueldo();
-                    itemTipoPersonalSueldo.IdTblTipoPersonal = itemTipoPersonal.IdTblTipoPersonal;
-                    itemTipoPersonalSueldo.SueldoMin = request.SueldoMin;
-                    itemTipoPersonalSueldo.SueldoMax = request.SueldoMax;
-                    itemTipoPersonalSueldo.Activo = true;
-
-                    await _repositorioTabuladorSueldo.Agregar(itemTipoPersonalSueldo);
-
-                }
-
-
-                //Se valida que tanto el registro de tipo personal y el sueldo hayan sido insertados correctamente si no fue asi se procede a eliminar el registro
-                if ( (request.RecibeSueldo == false && itemTipoPersonal.IdTblTipoPersonal > 0)|| (request.RecibeSueldo == false && itemTipoPersonal.IdTblTipoPersonal > 0 && itemTipoPersonalSueldo.IdCatTipoPersonalTabuladorSueldos > 0) )
-                {
-                    isCreate = true;
-                }
-                else
-                {
-                    if (itemTipoPersonal.IdTblTipoPersonal > 0)
+                    //Si el regitro tipo personal tiene sueldo se registra el sueldo
+                    CatTipoPersonalTabuladorSueldo itemTipoPersonalSueldo = null;
+                    if (request.RecibeSueldo) 
                     {
-                        await _repositorioTipoPersonal.Eliminar(itemTipoPersonal);
-                    }
-                    else if (itemTipoPersonalSueldo.IdCatTipoPersonalTabuladorSueldos > 0)
-                    {
-                        await _repositorioTabuladorSueldo.Eliminar(itemTipoPersonalSueldo);
-                    }
-                }
+                        itemTipoPersonalSueldo = new CatTipoPersonalTabuladorSueldo();
+                        itemTipoPersonalSueldo.IdTblTipoPersonal = itemTipoPersonal.IdTblTipoPersonal;
+                        itemTipoPersonalSueldo.SueldoMin = request.SueldoMin;
+                        itemTipoPersonalSueldo.SueldoMax = request.SueldoMax;
+                        itemTipoPersonalSueldo.Activo = true;
 
+                        await _repositorioTabuladorSueldo.Agregar(itemTipoPersonalSueldo);
+
+                    }
+
+
+                    //Se valida que tanto el registro de tipo personal y el sueldo hayan sido insertados correctamente si no fue asi se procede a eliminar el registro
+                    if ( (request.RecibeSueldo == false && itemTipoPersonal.IdTblTipoPersonal > 0)|| (request.RecibeSueldo == false && itemTipoPersonal.IdTblTipoPersonal > 0 && itemTipoPersonalSueldo.IdCatTipoPersonalTabuladorSueldos > 0) )
+                    {
+                        isCreate = true;
+                    }
+                    else
+                    {
+                        if (itemTipoPersonal.IdTblTipoPersonal > 0)
+                        {
+                            await _repositorioTipoPersonal.Eliminar(itemTipoPersonal);
+                        }
+                        else if (itemTipoPersonalSueldo.IdCatTipoPersonalTabuladorSueldos > 0)
+                        {
+                            await _repositorioTabuladorSueldo.Eliminar(itemTipoPersonalSueldo);
+                        }
+                    }
+
+                }
             }
             catch (Exception e)
             {
                 exceptionMessage = $"Error al crear el recurso indicado,intente de nuevo. ERROR {e.Message}";
             }
 
-            bool isException = string.IsNullOrEmpty(exceptionMessage);
+            bool isException = !string.IsNullOrEmpty(exceptionMessage);
             return new APIReply<bool>
             {
                 result = isCreate,
-                message = !isException ? "Recurso creado exitosamente " : string.Empty,
-                isException = !isException,
-                exceptionMessage = exceptionMessage,
-                statusCode = !isException ? System.Net.HttpStatusCode.Created : System.Net.HttpStatusCode.InternalServerError
+                message = isException ? exceptionMessage : "Recurso creado exitosamente ",
+                statusCode = isException ?  System.Net.HttpStatusCode.InternalServerError: System.Net.HttpStatusCode.Created
             };
-
         }
-
     }
-
-
-
 }

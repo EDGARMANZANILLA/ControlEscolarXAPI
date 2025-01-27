@@ -48,32 +48,20 @@ namespace Application.Handlers.TipoPersonal.Queries
             {
                 //Crea el query en memoria 
                 IQueryable<VwTipoPersonal> queryTipoPersonal = _repositorio.ObtenerPorFiltro(x => x.Activo == request.Activo);
-                var a = await queryTipoPersonal.ToListAsync(cancellationToken);
-
                 listadoDTO = _mapper.Map<List<TipoPersonalDTO>>(await queryTipoPersonal.ToListAsync(cancellationToken));
-                //// Mapea los datos a una lista de DTOs
-                //List<TipoPersonalDTO> listadoDtol = await queryTipoPersonal.Select(itemTipoPersonal => new TipoPersonalDTO
-                //{
-                //    IdTipoPersonal = itemTipoPersonal.IdTblTipoPersonal,
-                //    TipoPersonal = itemTipoPersonal.TipoPersonal,
-                //    NumeroControl = itemTipoPersonal.NumeroControl,
-                //    SueldoMin = itemTipoPersonal.SueldoMin,
-                //    SueldoMax = itemTipoPersonal.SueldoMax,
-                //}).ToListAsync(); 
+               
             }
             catch (Exception e)
             {
                 exceptionMessage = $"No se pudo realizar la consulta, conctacte con soporte!. || ERROR: {e.Message}";
             }
 
-            bool isException = string.IsNullOrEmpty(exceptionMessage);
+            bool isException = !string.IsNullOrEmpty(exceptionMessage);
             return new APIReply<List<TipoPersonalDTO>>
             {
                 result = listadoDTO,
-                message = !isException?"Lista tipo personal consultada exitosamente ": string.Empty,
-                isException = !isException,
-                exceptionMessage = exceptionMessage,
-                statusCode = !isException ? System.Net.HttpStatusCode.OK : System.Net.HttpStatusCode.InternalServerError
+                message = isException? string.Empty: "Lista tipo personal consultada exitosamente ",
+                statusCode = isException? System.Net.HttpStatusCode.InternalServerError: System.Net.HttpStatusCode.OK
             };
 
         }

@@ -118,10 +118,16 @@ namespace Persistence.Repositorios
         /// </summary>
         /// <param name="entidad">La entidad a eliminar.</param>
         /// <returns>Una tarea que representa la operación asincrónica.</returns>
-        public async Task Eliminar(TEntity entidad)
+        public async Task<int> Eliminar(TEntity entidad)
         {
             _controlEscolarXdbContext.Remove(entidad);
-            await _controlEscolarXdbContext.SaveChangesAsync();
+            return await _controlEscolarXdbContext.SaveChangesAsync();
+        }
+
+        public async Task<int> EliminarLista(List<TEntity> listaItemEliminar)
+        {
+            _controlEscolarXdbContext.Set<TEntity>().RemoveRange(listaItemEliminar);
+            return await _controlEscolarXdbContext.SaveChangesAsync();
         }
 
 
@@ -132,9 +138,6 @@ namespace Persistence.Repositorios
         {
             _controlEscolarXdbContext.Dispose();
         }
-
-
-
 
     }
 }

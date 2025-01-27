@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using static Dapper.SqlMapper;
 
 namespace Application.Interfaces
 {
@@ -54,7 +55,13 @@ namespace Application.Interfaces
         /// </summary>
         /// <param name="entidad">La entidad a eliminar.</param>
         /// <returns>Una tarea que representa la operación asincrónica.</returns>
-        Task Eliminar(T entidad);
+        Task<int>Eliminar(T entidad);
+
+
+        /// <summary>
+        /// Elimina entidades que sea pasadas en la lista de TEntity
+        /// </summary>
+        Task<int>EliminarLista(List<T> listaItemEliminar);
 
         void Dispose();
     }
