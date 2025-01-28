@@ -1,6 +1,8 @@
 ﻿using Application.DTO;
 using Application.Interfaces;
 using Domain;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,8 +26,9 @@ namespace ControlEscolarXWebAPI.Controllers
         /// Obtiene una lista no paginada de todos los tipos de personal existentes
         /// </summary>
         /// <returns>Retorna un response con la informacion solicitada</returns>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet]
-        public async Task<IActionResult> ObtenerListaTipoPersonal()
+        public async Task<IActionResult> GetListTipoPersonal()
         {
             return Ok(await _tipoPersonalUse.GetListTipoPersonalHandler());
         }
@@ -35,8 +38,9 @@ namespace ControlEscolarXWebAPI.Controllers
         /// </summary>
         /// <param name="tipoPersonal">Entidad que se desea crear</param>
         /// <returns>Retorna un response con lo sucedido en el server </returns>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
-        public async Task<IActionResult> CrearTipoPersonal([FromBody] CreateTipoPersonalDTO tipoPersonal)
+        public async Task<IActionResult> CreateTipoPersonal([FromBody] CreateTipoPersonalDTO tipoPersonal)
         {
             return Ok(await _tipoPersonalUse.CreateTipoPersonalHandler( tipoPersonal));
         }
@@ -47,20 +51,22 @@ namespace ControlEscolarXWebAPI.Controllers
         /// </summary>
         /// <param name="tipoPersonal"> tipo personal a actualizar</param>
         /// <returns>Retorna un response con lo sucedido en el server </returns>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPut("{id}")]
-        public async Task<IActionResult> ActualizarTipoPersonal([FromRoute] int id, [FromBody] TipoPersonalDTO tipoPersonal)
+        public async Task<IActionResult> UpdateTipoPersonal([FromRoute] int id, [FromBody] TipoPersonalDTO tipoPersonal)
         {
             return Ok(await _tipoPersonalUse.UpdateTipoPersonalHandler(id, tipoPersonal));
         }
-         
+
 
         /// <summary>
         /// Elimina un tipo de personal por su identificador
         /// </summary>
         /// <param name="id">Identificador del recurso a eliminar </param>
         /// <returns>Retorna un response con lo sucedido en el server </returns>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpDelete("{id}")]
-        public async Task<IActionResult> EliminarTipoPersonal([FromRoute] int id)
+        public async Task<IActionResult> DeleteTipoPersonal([FromRoute] int id)
         {
             return Ok(await _tipoPersonalUse.DeleteTipoPersonalHandler(id));
         }

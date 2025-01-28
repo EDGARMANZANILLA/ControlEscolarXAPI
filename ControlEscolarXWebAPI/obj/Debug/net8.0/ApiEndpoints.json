@@ -1,104 +1,70 @@
 [
   {
     "ContainingType": "ControlEscolarXWebAPI.Controllers.PersonalController",
-    "Method": "Post",
-    "RelativePath": "api/Personal",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "value",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ControlEscolarXWebAPI.Controllers.PersonalController",
-    "Method": "Get",
-    "RelativePath": "api/Personal/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ControlEscolarXWebAPI.Controllers.PersonalController",
-    "Method": "Put",
+    "Method": "UpdatePersonal",
     "RelativePath": "api/Personal/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "idPersonal",
         "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "updatePersonal",
+        "Type": "Application.DTO.PersonalDTO.UpdatePersonalDTO",
         "IsRequired": true
       },
       {
-        "Name": "value",
-        "Type": "System.String",
+        "Name": "id",
+        "Type": "",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ControlEscolarXWebAPI.Controllers.PersonalController",
-    "Method": "Delete",
+    "Method": "DeletePersonal",
     "RelativePath": "api/Personal/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "idPersonal",
         "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "id",
+        "Type": "",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ControlEscolarXWebAPI.Controllers.PersonalController",
-    "Method": "ObtenerPersonalPaginado",
+    "Method": "SearchNumControlPersonal",
+    "RelativePath": "api/Personal/{numeroControl}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "numeroControl",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlEscolarXWebAPI.Controllers.PersonalController",
+    "Method": "GetPaginatedListPersonal",
     "RelativePath": "api/Personal/ObtenerPersonalPaginado",
     "HttpMethod": "GET",
     "IsController": true,
@@ -119,7 +85,7 @@
   },
   {
     "ContainingType": "ControlEscolarXWebAPI.Controllers.TiposPersonalController",
-    "Method": "ObtenerListaTipoPersonal",
+    "Method": "GetListTipoPersonal",
     "RelativePath": "api/TiposPersonal",
     "HttpMethod": "GET",
     "IsController": true,
@@ -129,7 +95,7 @@
   },
   {
     "ContainingType": "ControlEscolarXWebAPI.Controllers.TiposPersonalController",
-    "Method": "CrearTipoPersonal",
+    "Method": "CreateTipoPersonal",
     "RelativePath": "api/TiposPersonal",
     "HttpMethod": "POST",
     "IsController": true,
@@ -145,7 +111,7 @@
   },
   {
     "ContainingType": "ControlEscolarXWebAPI.Controllers.TiposPersonalController",
-    "Method": "ActualizarTipoPersonal",
+    "Method": "UpdateTipoPersonal",
     "RelativePath": "api/TiposPersonal/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -166,7 +132,7 @@
   },
   {
     "ContainingType": "ControlEscolarXWebAPI.Controllers.TiposPersonalController",
-    "Method": "EliminarTipoPersonal",
+    "Method": "DeleteTipoPersonal",
     "RelativePath": "api/TiposPersonal/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,

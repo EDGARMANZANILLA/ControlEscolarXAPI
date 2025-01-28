@@ -1,4 +1,9 @@
-﻿using Application.UseCases;
+﻿using Application.DTO.PersonalDTO;
+using Application.Interfaces;
+using Application.Responses;
+using Application.UseCases;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,46 +15,74 @@ namespace ControlEscolarXWebAPI.Controllers
     [ApiController]
     public class PersonalController : ControllerBase
     {
-        private readonly PersonalUseCase _personalUseCase; 
-        public PersonalController(PersonalUseCase personalUseCase)
+        private readonly IPersonalUseCase _personalUseCase; 
+        public PersonalController(IPersonalUseCase personalUseCase)
         {
             _personalUseCase = personalUseCase;
         }
 
+        /// <summary>
+        /// Filtra y busca un recurso por el numero de control
+        /// </summary>
+        /// <param name="numeroControl">numero de control a buscar</param>
+        /// <returns>El recurso buscado o vacio cuando no lo encuentra</returns>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpGet("{numeroControl}")]
+        public async Task<IActionResult> SearchNumControlPersonal([FromRoute] string numeroControl)
+        {
+            return Ok(await _personalUseCase.SearchNumControlPersonal(numeroControl));
+        }
 
-        // GET: api/<PersonalController>
+        /// <summary>
+        /// Obtiene una lista de personal paginado y ordenado
+        /// </summary>
+        /// <param name="skip">numero de elementos a saltarse</param>
+        /// <param name="take">nuemro de elementos a devolver</param>
+        /// <returns>retorna una lista de personal</returns>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("ObtenerPersonalPaginado")]
-        public async Task<IActionResult> ObtenerPersonalPaginado([FromQuery] int skip , [FromQuery] int take)
+        public async Task<IActionResult> GetPaginatedListPersonal([FromQuery] int skip , [FromQuery] int take)
         {
-            return Ok(await _personalUseCase.ObtenerListaPaginadaPersonal(skip, take));
+            return Ok(await _personalUseCase.GetPaginatedListPersonal(skip, take));
         }
 
-
-
-
-        // GET api/<PersonalController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<PersonalController>
+        /// <summary>
+        /// crea un recursod de tipo personal 
+        /// </summary>
+        /// <param name="createPersonal"> modelo que se ocupa para la creacion del recurso</param>
+        /// <returns> retorna una cadena con lo sucedido con el recurso</returns>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> CreatePersonal([FromBody] CreatePersonalDTO createPersonal)
         {
+            return Ok(await _personalUseCase.CreatePersonal(createPersonal));
         }
 
-        // PUT api/<PersonalController>/5
+
+        /// <summary>
+        /// Actualiza un tipo de personal
+        /// </summary>
+        /// <param name="idPersonal">id del personal a actualizar</param>
+        /// <param name="updatePersonal"> datos del personal a actualizar</param>
+        /// <returns>Retorna el recurso actualizado</returns>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> UpdatePersonal([FromRoute] int idPersonal,[FromBody] UpdatePersonalDTO updatePersonal)
         {
+            return Ok(await _personalUseCase.UpdatePersonal(idPersonal, updatePersonal));
         }
 
-        // DELETE api/<PersonalController>/5
+        /// <summary>
+        /// Elimina un personal selecionado 
+        /// </summary>
+        /// <param name="idPersonal">identificador para eliminar el recurso</param>
+        /// <returns> retorna el numero de recursos eliminados </returns>
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> DeletePersonal([FromRoute] int idPersonal)
         {
+            return Ok(await _personalUseCase.DeletePersonal(idPersonal));
         }
+
     }
 }

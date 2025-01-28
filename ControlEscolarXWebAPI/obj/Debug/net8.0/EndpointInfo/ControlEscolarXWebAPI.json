@@ -5,6 +5,28 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Personal/{numeroControl}": {
+      "get": {
+        "tags": [
+          "Personal"
+        ],
+        "parameters": [
+          {
+            "name": "numeroControl",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Personal/ObtenerPersonalPaginado": {
       "get": {
         "tags": [
@@ -36,56 +58,26 @@
       }
     },
     "/api/Personal/{id}": {
-      "get": {
-        "tags": [
-          "Personal"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
       "put": {
         "tags": [
           "Personal"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idPersonal",
             "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -93,17 +85,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/UpdatePersonalDTO"
               }
             },
             "text/json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/UpdatePersonalDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/UpdatePersonalDTO"
               }
             }
           }
@@ -120,46 +112,23 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "idPersonal",
             "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Personal": {
-      "post": {
-        "tags": [
-          "Personal"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "string"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "string"
-              }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -350,6 +319,47 @@
             "format": "double"
           },
           "sueldoMax": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePersonalDTO": {
+        "type": "object",
+        "properties": {
+          "idPersonal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "apellidos": {
+            "type": "string",
+            "nullable": true
+          },
+          "correoElectronico": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaNacimiento": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "numeroControl": {
+            "type": "string",
+            "nullable": true
+          },
+          "estatus": {
+            "type": "boolean"
+          },
+          "idTipoPersonal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sueldo": {
             "type": "number",
             "format": "double"
           }

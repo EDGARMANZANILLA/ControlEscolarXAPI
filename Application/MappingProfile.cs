@@ -1,4 +1,6 @@
 ﻿using Application.DTO;
+using Application.DTO.PersonalDTO;
+using Application.Handlers.Personal.Commands;
 using Application.Handlers.TipoPersonal.Commands;
 using Application.Handlers.Usuario;
 using AutoMapper;
@@ -31,6 +33,14 @@ namespace Application
 
             CreateMap<CreateTipoPersonalDTO, CreateTipoPersonalCommand>();
             CreateMap<UsuarioAutenticadoDTO, AutenticationUsuarioQuery>();
+
+            //Mappin para actualizar un personal
+            //Funciona para actualizar un personal
+            CreateMap<UpdatePersonalDTO, UpdatePersonalCommand>();
+            CreateMap<UpdatePersonalCommand, UpdatePersonalDTO>();
+
+            //Mapping para crear un personal
+            CreateMap<CreatePersonalDTO, CreatePersonalCommand>();
         }
     }
 }

@@ -195,6 +195,13 @@ C:\Users\Usuario\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug
 C:\Users\Usuario\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ref\ControlEscolarXWebAPI.dll
 C:\Users\Usuario\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\Ardalis.Specification.dll
 C:\Users\Usuario\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\Ardalis.Specification.EntityFrameworkCore.dll
+C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.csproj.AssemblyReference.cache
+C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.AssemblyInfoInputs.cache
+C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.AssemblyInfo.cs
+C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.csproj.CoreCompileInputs.cache
+C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.sourcelink.json
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\appsettings.json
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\ControlEscolarXWebAPI.staticwebassets.endpoints.json
@@ -214,6 +221,7 @@ C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\n
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\Humanizer.dll
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\MediatR.dll
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\MediatR.Contracts.dll
+C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\Microsoft.Build.Locator.dll
@@ -367,14 +375,7 @@ C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\n
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\Application.pdb
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\Persistence.pdb
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\Domain.pdb
-C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.csproj.AssemblyReference.cache
-C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.AssemblyInfoInputs.cache
-C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.AssemblyInfo.cs
-C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.csproj.CoreCompileInputs.cache
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.sourcelink.json
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\scopedcss\bundle\ControlEscolarXWebAPI.styles.css
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\staticwebassets.development.json
