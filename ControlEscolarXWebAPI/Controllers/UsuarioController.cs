@@ -16,7 +16,12 @@ namespace ControlEscolarXWebAPI.Controllers
         {
             _usuarioUseCase = usuarioUseCase;
         }
-        
+
+        /// <summary>
+        /// Autentica al usuario para que se le asigne un token y pueda hacer peticiones
+        /// </summary>
+        /// <param name="usuarioLogin">parametreo para la autenticacion</param>
+        /// <returns>retorna un objeto de tipo UsuarioAutenticadoDTO que contiene el token </returns>
         [HttpPost("Iniciosesion")]
         public async Task<IActionResult> InicioSesion([FromBody] UsuarioAutenticadoDTO usuarioLogin)
         {
