@@ -23,6 +23,7 @@ namespace Application
             //Registra cada Interfaz con el tipo de caso de uso
             services.AddTransient<ITipoPersonalUseCase,TipoPersonalUseCase>();
             services.AddTransient<IUsuarioUseCase,UsuarioUseCase>();
+            services.AddTransient<PersonalUseCase>();
 
         }
 

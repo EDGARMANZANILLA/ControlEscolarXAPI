@@ -21,6 +21,7 @@ namespace Persistence
             services.Configure<ConnectionStringsSettings>(configuration.GetSection("ConnectionStrings"));
 
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddTransient(typeof(IArdalisRepository<>), typeof(ArdalisRepository<>));
 
 
 
