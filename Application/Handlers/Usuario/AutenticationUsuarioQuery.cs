@@ -43,41 +43,50 @@ namespace Application.Handlers.Usuario
         {
             UsuarioModel userModel = null;  
             string exceptionMessage = string.Empty;
-            TblUsuario itemUsuario = await _repository.ObtenerPorFiltro(x => x.NombreUsuario == request.NombreUsuario && x.Contrasenia == request.Contrasenia).FirstOrDefaultAsync(cancellationToken);
+            try
+            {
+                TblUsuario itemUsuario = await _repository.ObtenerPorFiltro(x => x.NombreUsuario == request.NombreUsuario && x.Contrasenia == request.Contrasenia).FirstOrDefaultAsync(cancellationToken);
 
-            if (itemUsuario == null)
-            {
-                exceptionMessage = $"El usuario y/o contraseña son incorrectas";
-            }
-            else 
-            {
-                // Crea las reclamaciones (claims) para el token JWT
-                var claims = new List<Claim>
+                if (itemUsuario == null)
+                {
+                    exceptionMessage = $"El usuario y/o contraseña son incorrectas";
+                }
+                else
+                {
+                    // Crea las reclamaciones (claims) para el token JWT
+                    var claims = new List<Claim>
                 {
                     new Claim("username", itemUsuario.NombreUsuario),
                 };
 
-                // Crea un token de seguridad
-                var token = new JwtSecurityToken(
-                    issuer: _jwtSettings.Issuer,
-                    audience: _jwtSettings.Audience,
-                    claims: claims,
-                    expires: DateTime.UtcNow.AddHours(4),
-                    notBefore: DateTime.UtcNow,
-                    signingCredentials: new SigningCredentials(
-                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key)),
-                        SecurityAlgorithms.HmacSha256
-                    )
-                );
+                    // Crea un token de seguridad
+                    var token = new JwtSecurityToken(
+                        issuer: _jwtSettings.Issuer,
+                        audience: _jwtSettings.Audience,
+                        claims: claims,
+                        expires: DateTime.UtcNow.AddHours(4),
+                        notBefore: DateTime.UtcNow,
+                        signingCredentials: new SigningCredentials(
+                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key)),
+                            SecurityAlgorithms.HmacSha256
+                        )
+                    );
 
-                // Firma el token
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+                    // Firma el token
+                    var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
 
-                userModel = _mapper.Map<UsuarioModel>(itemUsuario);
-                userModel.AccessToken = tokenString;
+                    userModel = _mapper.Map<UsuarioModel>(itemUsuario);
+                    userModel.AccessToken = tokenString;
+                }
+
             }
+            catch (Exception ex)
+            {
+                exceptionMessage = $"Erro al autenticar usuario- {ex.Message}";
 
+            }
+           
 
             bool isException = !string.IsNullOrEmpty(exceptionMessage);
             return new APIReply<UsuarioModel>

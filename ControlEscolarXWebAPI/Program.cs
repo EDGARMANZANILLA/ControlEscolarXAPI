@@ -1,7 +1,21 @@
 using Application;
+using ControlEscolarXWebAPI.Middleware;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Define la politica de CORS
+var corsAllowedOrigins = "_corsAllowedOrigins";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: corsAllowedOrigins,
+                      policy =>
+                      {
+                          policy.AllowAnyHeader()
+                          .AllowAnyMethod()
+                          .AllowAnyOrigin();
+                      });
+});
 
 // Add services to the container.
 
@@ -16,6 +30,9 @@ builder.Services.AddServicesPersistence(builder.Configuration);
 
 var app = builder.Build();
 
+// Usa el middleware CORS
+app.UseCors(corsAllowedOrigins);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -26,6 +43,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+//Use de un midleware como validacion de tipos
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.MapControllers();
 

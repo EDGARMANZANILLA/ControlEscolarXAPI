@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "ControlEscolarXWebAPI.Controllers.PersonalController",
+    "Method": "CreatePersonal",
+    "RelativePath": "api/Personal",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "createPersonal",
+        "Type": "Application.DTO.PersonalDTO.CreatePersonalDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ControlEscolarXWebAPI.Controllers.PersonalController",
     "Method": "UpdatePersonal",
     "RelativePath": "api/Personal/{id}",
     "HttpMethod": "PUT",

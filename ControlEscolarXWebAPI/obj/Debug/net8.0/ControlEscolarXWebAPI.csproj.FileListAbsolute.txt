@@ -393,3 +393,4 @@ C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\n
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.pdb
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ControlEscolarXWebAPI.genruntimeconfig.cache
 C:\Users\edgar\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\obj\Debug\net8.0\ref\ControlEscolarXWebAPI.dll
+C:\Users\Usuario\source\repos\ControlEscolarXAPI\ControlEscolarXWebAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
